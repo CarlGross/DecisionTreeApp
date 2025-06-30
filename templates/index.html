@@ -7,6 +7,13 @@
 {% block body %}
     <h1>
         Welcome to DecisionTree!
+        <br>
+        What is your pondered decision?
     </h1>
-
+    <div style="text-align: center;">
+    <form action="/" method="POST">
+        <input name="root" id="root">
+        <input type="submit" value="Create Tree">
+    </form>
+    </div>
 {% endblock %}

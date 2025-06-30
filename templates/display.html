@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+{% block body %}
+    <h1>All Nodes</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Scenario</th>
+            <th>ParentID</th>
+        </tr>
+        {% for node in nodes %}
+            <tr>
+                <td>{{ node.id }}</td>
+                <td>{{ node.scenario }}</td>
+                <td>{{ node.parent_id }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

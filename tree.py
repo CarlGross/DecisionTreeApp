@@ -12,3 +12,4 @@ class Node(db.Model):
     best = db.relationship('Node', remote_side=[id], foreign_keys=[best_id])
     realistic = db.relationship('Node', remote_side=[id], foreign_keys=[realistic_id])
     worst = db.relationship('Node', remote_side=[id], foreign_keys=[worst_id])
+ 
