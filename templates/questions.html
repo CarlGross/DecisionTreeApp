@@ -2,16 +2,16 @@
 {% block head %}
 {% endblock %}
 {% block body %}
-    <h1>If you {{currNode.scenario}}:</h1>
+    <h1>If you {{currNode.scenario}} {% if level == 1 %}(think of immediate result){% elif level == 2 %}(think of result months from now){% else %}(think of result years from now){% endif %}:</h1>
     <br>
     <div style="text-align: center;">
-    <form action="/questions/{{ currNode.id }}" method="POST">
+    <form action="/questions/" method="POST">
         <h1>What's the best-case result?</h1>
-        <input name="best_case" id="best_case">
+        Then you <input name="best_case" id="best_case">
         <h1>What's the most realistic result?</h1>
-        <input name="realistic_case" id="realistic_case">
+        Then you <input name="realistic_case" id="realistic_case">
         <h1>What's the worst-case result?</h1>
-        <input name="worst_case" id="worst_case">
+        Then you <input name="worst_case" id="worst_case">
         <br>
         <input type="submit" value="Update Tree">
     </form>

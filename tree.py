@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 class Node(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    level = db.Column(db.Integer)
     scenario = db.Column(db.String(200))
     parent_id = db.Column(db.Integer, db.ForeignKey('node.id'))
     best_id = db.Column(db.Integer, db.ForeignKey('node.id'))
