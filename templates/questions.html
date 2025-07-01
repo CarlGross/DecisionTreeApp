@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block head %}
+    <script src="{{url_for('static', filename='js/duplicate.js')}}"></script>
 {% endblock %}
 {% block body %}
     <h1>If you {{currNode.scenario}} {% if level == 1 %}(think of immediate result){% elif level == 2 %}(think of result months from now){% else %}(think of result years from now){% endif %}:</h1>
@@ -8,8 +9,10 @@
     <form action="/questions/" method="POST">
         <h1>What's the best-case result?</h1>
         Then you <input name="best_case" id="best_case">
+        <h3>Click if best and realistic are the same: <input type ="checkbox" name="best_realistic" id="best_realistic"></h3>
         <h1>What's the most realistic result?</h1>
         Then you <input name="realistic_case" id="realistic_case">
+        <h3>Click if worst and realistic are the same: <input type ="checkbox" name="worst_realistic" id="worst_realistic"></h3>
         <h1>What's the worst-case result?</h1>
         Then you <input name="worst_case" id="worst_case">
         <br>

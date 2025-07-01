@@ -30,6 +30,8 @@ def questions():
     queue = session.get('queue', [])
     node_id = queue[0]
     currNode = Node.query.get_or_404(node_id)
+    if currNode.level == 3:
+        return redirect('/display/')
     if request.method == 'POST':
         level = currNode.level + 1
         best = Node(scenario=request.form['best_case'], level=level)
@@ -41,13 +43,13 @@ def questions():
         currNode.worst = worst
         best.parent_id = node_id
         realistic.parent_id = node_id
+        worst.parent_id = node_id
         db.session.commit()
 
         worst.parent_id = node_id
         queue += [best.id, realistic.id, worst.id]
         queue.pop(0)
         session['queue'] = queue
-        
         return redirect('/questions/')
     return render_template('questions.html', currNode=currNode, level=currNode.level + 1)
 
