@@ -26,4 +26,9 @@ document.getElementById('best_realistic').addEventListener('input', duplicate);
 document.getElementById('worst_realistic').addEventListener('input', duplicate);
 document.getElementById('best_case').addEventListener('input', duplicate);
 document.getElementById('realistic_case').addEventListener('input', duplicate);
+document.getElementById('form').addEventListener('submit', () => {
+    document.getElementById('realistic_case').disabled = false;
+    document.getElementById('worst_case').disabled = false;
+})
 });
+

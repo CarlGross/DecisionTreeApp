@@ -21,3 +21,40 @@ input[type="submit"]:hover {
     background-color: brown;
     color: white;
 }
+ul {
+  padding-left: 20px;
+  list-style-type: none;
+  position: relative;
+}
+
+ul ul {
+  margin-left: 20px;
+}
+
+li {
+  margin: 0 0 0 1em;
+  padding-left: 1em;
+  position: relative;
+  line-height: 1.5em;
+}
+
+/* vertical line */
+li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 2px solid #ccc;
+  height: 100%;
+}
+
+/* horizontal connector */
+li::after {
+  content: "";
+  position: absolute;
+  top: 0.75em;
+  left: 0;
+  width: 1em;
+  border-top: 2px solid #ccc;
+}
+

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+    {% macro render_node(node) %}
+        <ul>
+            <li>
+                {{ node.scenario }}
+                
+                {% if node.best %}
+                {{ render_node(node.best) }}
+                {% endif %}
+                {% if node.realistic %}
+                {{ render_node(node.realistic) }}
+                {% endif %}
+                {% if node.worst %}
+                {{ render_node(node.worst) }}
+                {% endif %}
+            </li>
+        </ul>
+
+    {% endmacro %}
+{% block body %}
+    <h1>All Nodes</h1>
+    {{ render_node(root) }}
+{% endblock %}

@@ -21,7 +21,7 @@ def index():
         db.session.add(root)
         db.session.commit()
         session['queue'] = [root.id]
-        return redirect(f'/questions/')
+        return redirect('/questions/')
     else:
         return render_template('index.html')
 
@@ -31,23 +31,38 @@ def questions():
     node_id = queue[0]
     currNode = Node.query.get_or_404(node_id)
     if currNode.level == 3:
-        return redirect('/display/')
+        return redirect('/tree/')
     if request.method == 'POST':
         level = currNode.level + 1
-        best = Node(scenario=request.form['best_case'], level=level)
-        realistic = Node(scenario=request.form['realistic_case'], level=level)
-        worst = Node(scenario=request.form['worst_case'], level=level)
-        db.session.add_all([best, realistic, worst])
-        currNode.best = best
-        currNode.realistic = realistic
-        currNode.worst = worst
-        best.parent_id = node_id
-        realistic.parent_id = node_id
-        worst.parent_id = node_id
-        db.session.commit()
+        best_input = request.form['best_case']
+        realistic_input = request.form['realistic_case']
+        worst_input = request.form['worst_case']
+        best = Node(scenario=best_input, level=level)
+        realistic = Node(scenario=realistic_input, level=level)
+        worst = Node(scenario=worst_input, level=level)
+        if best_input == realistic_input:
+            db.session.add(realistic)
+            realistic.parent_id = node_id
+            currNode.realistic = realistic
+            db.session.commit()
+        else:
+            db.session.add_all([best, realistic])
+            currNode.realistic = realistic
+            currNode.best = best
+            realistic.parent_id = node_id
+            best.parent_id = node_id
+            db.session.commit()
+            queue += [best.id]
 
-        worst.parent_id = node_id
-        queue += [best.id, realistic.id, worst.id]
+        queue += [realistic.id]
+
+        if realistic_input != worst_input:
+            db.session.add(worst)
+            currNode.worst = worst
+            worst.parent_id = node_id
+            db.session.commit()
+            queue += [worst.id]
+
         queue.pop(0)
         session['queue'] = queue
         return redirect('/questions/')
@@ -56,6 +71,11 @@ def questions():
 @app.route('/display/', methods=['POST', 'GET'])
 def display():
     return render_template('display.html', nodes=Node.query.all())
+
+@app.route('/tree/', methods=['POST', 'GET'])
+def tree():
+    root = Node.query.order_by(Node.id).first()
+    return render_template('tree.html', root=root)
 
 if __name__ == '__main__':
    

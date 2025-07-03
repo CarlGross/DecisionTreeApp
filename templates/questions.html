@@ -6,7 +6,7 @@
     <h1>If you {{currNode.scenario}} {% if level == 1 %}(think of immediate result){% elif level == 2 %}(think of result months from now){% else %}(think of result years from now){% endif %}:</h1>
     <br>
     <div style="text-align: center;">
-    <form action="/questions/" method="POST">
+    <form action="/questions/" id="form" method="POST">
         <h1>What's the best-case result?</h1>
         Then you <input name="best_case" id="best_case">
         <h3>Click if best and realistic are the same: <input type ="checkbox" name="best_realistic" id="best_realistic"></h3>
