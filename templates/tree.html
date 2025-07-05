@@ -2,9 +2,11 @@
 {% block head %}
 {% endblock %}
     {% macro render_node(node) %}
+        {% set r = 255 - node.off_realistic * 65 %}
         <ul>
-            <li>
-                {{ node.scenario }}
+            <li style="color: rgb({{ r }}, 0, 0);">
+                
+                <b>{{ node.scenario }}</b>
                 
                 {% if node.best %}
                 {{ render_node(node.best) }}

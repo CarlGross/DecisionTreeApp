@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 from tree import db, Node
 import secrets
+import uuid
 
 app = Flask(__name__)
 
@@ -16,8 +17,9 @@ with app.app_context():
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
-        root = Node(scenario=request.form['root'])
-        root.level = 0
+        tree_id = str(uuid.uuid4())
+        session['tree_id'] = tree_id
+        root = Node(scenario=request.form['root'], level=0, off_realistic=0, tree_id=tree_id)
         db.session.add(root)
         db.session.commit()
         session['queue'] = [root.id]
@@ -27,6 +29,7 @@ def index():
 
 @app.route('/questions/', methods=['POST', 'GET'])
 def questions():
+    tree_id = session.get('tree_id')
     queue = session.get('queue', [])
     node_id = queue[0]
     currNode = Node.query.get_or_404(node_id)
@@ -37,13 +40,13 @@ def questions():
         best_input = request.form['best_case']
         realistic_input = request.form['realistic_case']
         worst_input = request.form['worst_case']
-        best = Node(scenario=best_input, level=level)
-        realistic = Node(scenario=realistic_input, level=level)
-        worst = Node(scenario=worst_input, level=level)
+        best = Node(scenario=best_input, level=level, tree_id=tree_id, off_realistic=currNode.off_realistic + 1)
+        realistic = Node(scenario=realistic_input, level=level, tree_id=tree_id, off_realistic=currNode.off_realistic)
+        worst = Node(scenario=worst_input, level=level, tree_id=tree_id, off_realistic=currNode.off_realistic + 1)
         if best_input == realistic_input:
             db.session.add(realistic)
-            realistic.parent_id = node_id
             currNode.realistic = realistic
+            realistic.parent_id = node_id
             db.session.commit()
         else:
             db.session.add_all([best, realistic])
@@ -74,7 +77,8 @@ def display():
 
 @app.route('/tree/', methods=['POST', 'GET'])
 def tree():
-    root = Node.query.order_by(Node.id).first()
+    tree_id = session.get('tree_id')
+    root = Node.query.filter_by(tree_id=tree_id, level=0).first()
     return render_template('tree.html', root=root)
 
 if __name__ == '__main__':
