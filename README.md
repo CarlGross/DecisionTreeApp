@@ -11,9 +11,9 @@ Back end: Python (Flask), Jinja2
 Database: SQLite (via SQLAlchemy)  
 Deployment: Render
 
-# Techincal Details
+# Technical Details
 The data is stored as tree nodes in a SQLite database, defined in "tree.py". The data is displayed by traversing the nodes recursively. The two JavaScript files ("png.js" and "duplicate.js") are used to download a png of the tree and 
-handle a duplicate outcome button respectively. The client data is tracked in seperate sessions using unique tree_ids. 
+handle a duplicate outcome button respectively. The client data is tracked in separate sessions using unique tree_ids. 
 
 # Lessons Learned
 This was my first finished full stack application. Through this project, I:  
