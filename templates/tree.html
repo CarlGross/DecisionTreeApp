@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="{{url_for('static', filename='js/png.js')}}"></script>
 {% endblock %}
     {% macro render_node(node) %}
         {% set r = 255 - node.off_realistic * 65 %}
@@ -21,7 +23,11 @@
         </ul>
 
     {% endmacro %}
+
 {% block body %}
-    <h1>All Nodes</h1>
+    
+    <h1>Tree: {{root.scenario}}</h1>
+    <button id="pngButton" onclick="downloadPNG('{{root.scenario}}_Tree.png')">Dowload PNG</button>
     {{ render_node(root) }}
+        
 {% endblock %}

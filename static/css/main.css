@@ -8,6 +8,8 @@ html {
   width: 100%;
   top: 0;
   left: 0;
+  margin:0;
+  padding: 0;
 }
 .bottom-stripe{
   height: 30px;
@@ -16,6 +18,8 @@ html {
   width: 100%;
   bottom: 0;
   left: 0;
+  margin:0;
+  padding:0;
 }
 body {
   padding-left: 200px;
@@ -37,13 +41,13 @@ input[type="text"]{
     color: brown;
     width: 300px;
 }
-input[type="submit"]{
+input[type="submit"], button{
     font-size: 1rem;
     padding: 0.8em 1.63em;
     border-radius: 5px;
     background-color:chocolate;
 }
-input[type="submit"]:hover {
+input[type="submit"]:hover, button:hover {
     background-color: brown;
     color: white;
 }
@@ -81,4 +85,5 @@ li::after {
   width: 1em;
   border-top: 2px solid black;
 }
+
 
