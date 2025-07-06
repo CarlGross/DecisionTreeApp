@@ -4,26 +4,24 @@ html {
 .top-stripe{
   height: 30px;
   background-color: chocolate;
-  position: fixed;
+  position: absolute;
   width: 100%;
-  top: 0;
   left: 0;
-  margin:0;
-  padding: 0;
+  top: 0;
 }
 .bottom-stripe{
   height: 30px;
   background-color: chocolate;
-  position: fixed;
-  width: 100%;
+  position: relative;
+  width: calc(100% + 400px); 
   bottom: 0;
   left: 0;
-  margin:0;
-  padding:0;
+  margin-left: -200px;
 }
 body {
   padding-left: 200px;
   padding-right: 200px;
+  margin: 0;
     background-color:lemonchiffon;
     color: brown;
 }
@@ -34,7 +32,6 @@ h1 {
 }
 p {
   font-size: large;
-  /* text-align: center; */
 }
 input[type="text"]{
     font-size: large;
@@ -52,20 +49,21 @@ input[type="submit"]:hover, button:hover {
     color: white;
 }
 ul {
-  padding-left: 50px;
+  padding-left: 60px;
   list-style-type: none;
   position: relative;
 }
 
 ul ul {
-  margin-left: 120px;
+  margin-left: 7.5em;
+  position: relative;
 }
 
 li {
-  margin: 0 0 0 1em;
+  margin: 0 0 0 2em;
   padding-left: 1em;
   position: relative;
-  line-height: 1.5em;
+  line-height: 1.3em;
 }
 
 li::before {

@@ -3,21 +3,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="{{url_for('static', filename='js/png.js')}}"></script>
 {% endblock %}
-    {% macro render_node(node) %}
+    {% macro render_node(node, border_color) %}
         {% set r = 255 - node.off_realistic * 65 %}
         <ul>
             <li style="color: rgb({{ r }}, 0, 0);">
                 
-                <b>{{ node.scenario }}</b>
-                
+                <span style="border: 1px solid {{border_color}};"<b>{{ node.scenario }}</b></span>
                 {% if node.best %}
-                {{ render_node(node.best) }}
+                {{ render_node(node.best, "green") }}
                 {% endif %}
                 {% if node.realistic %}
-                {{ render_node(node.realistic) }}
+                {{ render_node(node.realistic, "red") }}
                 {% endif %}
                 {% if node.worst %}
-                {{ render_node(node.worst) }}
+                {{ render_node(node.worst, "blue") }}
                 {% endif %}
             </li>
         </ul>
@@ -27,7 +26,26 @@
 {% block body %}
     
     <h1>Tree: {{root.scenario}}</h1>
-    <button id="pngButton" onclick="downloadPNG('{{root.scenario}}_Tree.png')">Dowload PNG</button>
-    {{ render_node(root) }}
+    <div style="display: flex; gap: 40em">
+    <div>
+    <button id="pngButton" onclick="downloadPNG('{{root.scenario}}_Tree.png')">Download PNG</button>
+    </div>
+    <div style="text-align: center;">
+    <h2>Key</h2>
+    <span style="color: red;">More Realistic</span> => <span style="color: black">Less Realistic</span> <br> 
+    <span style="border: 2px solid green;">Best-Case</span>, <span style="border: 2px solid red;">Realistic-Case</span>
+    , <span style="border: 2px solid blue;">Worst-Case</span> 
+    </div>
+    </div> 
+    
+    {{ render_node(root, "red") }}
+    <br>
+    <div style="text-align: center; display: flex; gap: 9em">
+    <div style="padding-left: 170px">Decision</div> 
+    <div>Instant Result</div>
+    <div>Months Result</div>
+    <div>Years Result</div>
+    </div>
+   
         
 {% endblock %}
