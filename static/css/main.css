@@ -1,6 +1,11 @@
 html {
     font-family: sans-serif;
 }
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .top-stripe{
   height: 30px;
   background-color: chocolate;
@@ -14,9 +19,11 @@ html {
   background-color: chocolate;
   position: relative;
   width: calc(100% + 400px); 
-  bottom: 0;
+  bottom: 0vh;
   left: 0;
   margin-left: -200px;
+  margin-bottom: 0;
+  margin-top: auto;
 }
 body {
   padding-left: 200px;

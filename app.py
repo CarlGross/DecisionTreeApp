@@ -31,6 +31,8 @@ def index():
 def questions():
     tree_id = session.get('tree_id')
     queue = session.get('queue', [])
+    if queue == []:
+        return redirect('/tree/')
     node_id = queue[0]
     currNode = Node.query.get_or_404(node_id)
     if currNode.level == 3:
@@ -55,16 +57,19 @@ def questions():
             realistic.parent_id = node_id
             best.parent_id = node_id
             db.session.commit()
-            queue += [best.id]
-
-        queue += [realistic.id]
+            if best_input != '':
+                queue += [best.id]
+        
+        if realistic_input != '':
+            queue += [realistic.id]
 
         if realistic_input != worst_input:
             db.session.add(worst)
             currNode.worst = worst
             worst.parent_id = node_id
             db.session.commit()
-            queue += [worst.id]
+            if worst_input != '':
+                queue += [worst.id]
 
         queue.pop(0)
         session['queue'] = queue

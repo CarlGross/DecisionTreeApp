@@ -7,13 +7,16 @@
     <div style="text-align: center;">
     <form action="/questions/" id="form" method="POST">
         <h1>What's the best-case result?</h1>
-        Then you <input type="text" name="best_case" id="best_case">
+        Then you <input style="display: inline;" type="text" name="best_case" id="best_case"> 
+        (Leave blank if no impactful result) 
         <h3>Click if best and realistic are the same: <input type ="checkbox" name="best_realistic" id="best_realistic"></h3>
         <h1>What's the most realistic result?</h1>
         Then you <input type="text" name="realistic_case" id="realistic_case">
+        (Leave blank if no impactful result)
         <h3>Click if worst and realistic are the same: <input type ="checkbox" name="worst_realistic" id="worst_realistic"></h3>
         <h1>What's the worst-case result?</h1>
         Then you <input type="text" name="worst_case" id="worst_case">
+        (Leave blank if no impactful result)
         <br> <br> <br>
         <input type="submit" value="Update Tree">
     </form>
