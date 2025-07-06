@@ -1,21 +1,47 @@
 html {
     font-family: sans-serif;
 }
+.top-stripe{
+  height: 30px;
+  background-color: chocolate;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.bottom-stripe{
+  height: 30px;
+  background-color: chocolate;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
 body {
+  padding-left: 200px;
+  padding-right: 200px;
     background-color:lemonchiffon;
     color: brown;
 }
 h1 {
     text-align: center;
+    line-height: 50px;
+    margin: 40px;
+}
+p {
+  font-size: large;
+  /* text-align: center; */
 }
 input[type="text"]{
+    font-size: large;
     color: brown;
+    width: 300px;
 }
 input[type="submit"]{
     font-size: 1rem;
     padding: 0.8em 1.63em;
     border-radius: 5px;
-    background-color:tan;
+    background-color:chocolate;
 }
 input[type="submit"]:hover {
     background-color: brown;
