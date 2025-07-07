@@ -5,6 +5,7 @@
 {% endblock %}
     
 {% block body %}
+    <br>
     <h1>
         Welcome to DecisionTree!
         <br>
@@ -13,11 +14,13 @@
     <p>
     <div style="text-align: center;">
     <form action="/" method="POST">
-        You <input type="text" name="root" id="root" placeholder="create a tree (ex)">
+        You <input type="text" name="root" id="root" placeholder="create a tree (ex)" required>
         <input type="submit" value="Create Tree">
     </form>
     </div>
     </p>
+    <br>
+    <div class="box">
     <h1>How it works:</h1>
     <p>
         In an effort to put an end to decision paralysis, this application will concretely walk through your idea of the 
@@ -25,11 +28,12 @@
         <br> <br>
         It breaks up the results into three cases: Best, Realistic, and Worst. 
         <br> <br>
-        After the result of the cases and sub-cases through three different time frames (immediate, months, years), you'll be shown a tree 
+        After the result of the cases and sub-cases through three different time frames (immediate, weeks, months/years), you'll be shown a tree 
         of all your the possible paths along with which you think are more realistic.
         <br> <br>
         Though it's not quantitative or entirely logically sound, this is a way to stop cyclical thinking by making sure that 
         all the most important avenues were considered and by having concrete proof that you thought out the decision to the best of 
         your ability. Hopefully if nothing else, this causes you to act or consider changing plans.
     </p>
+    </div>
 {% endblock %}

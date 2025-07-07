@@ -3,20 +3,30 @@
     <script src="{{url_for('static', filename='js/duplicate.js')}}"></script>
 {% endblock %}
 {% block body %}
-    <h1>If you {{currNode.scenario}} {% if level == 1 %}(think of the immediate outcome){% elif level == 2 %}(think of result months from now){% else %}(think of result years from now){% endif %}:</h1>
+    <br>
+    <br>
+    <h1>If you {{currNode.scenario}}, think about the {% if level == 1 %}immediate outcome
+    {% elif level == 2 %}result weeks from now
+    {% else %}result months to years from now{% endif %}:</h1>
     <div style="text-align: center;">
     <form action="/questions/" id="form" method="POST">
+        <div class="box">
         <h1>What's the best-case result?</h1>
         Then you <input style="display: inline;" type="text" name="best_case" id="best_case"> 
-        (Leave blank if no impactful result) 
+        (Leave blank if no impactful result) <br> <br>
+        </div> 
         <h3>Click if best and realistic are the same: <input type ="checkbox" name="best_realistic" id="best_realistic"></h3>
+        <div class="box">
         <h1>What's the most realistic result?</h1>
         Then you <input type="text" name="realistic_case" id="realistic_case">
-        (Leave blank if no impactful result)
+        (Leave blank if no impactful result) <br> <br>
+        </div> 
         <h3>Click if worst and realistic are the same: <input type ="checkbox" name="worst_realistic" id="worst_realistic"></h3>
+        <div class="box">
         <h1>What's the worst-case result?</h1>
         Then you <input type="text" name="worst_case" id="worst_case">
-        (Leave blank if no impactful result)
+        (Leave blank if no impactful result) <br> <br>
+        </div> 
         <br> <br> <br>
         <input type="submit" value="Update Tree">
     </form>

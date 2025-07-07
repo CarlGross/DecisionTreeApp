@@ -59,6 +59,7 @@ def questions():
             db.session.commit()
             if best_input != '':
                 queue += [best.id]
+                
         
         if realistic_input != '':
             queue += [realistic.id]

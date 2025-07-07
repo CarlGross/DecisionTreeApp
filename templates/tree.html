@@ -5,10 +5,11 @@
 {% endblock %}
     {% macro render_node(node, border_color) %}
         {% set r = 255 - node.off_realistic * 65 %}
+        {% set size = 21 - node.off_realistic * 3.5 %}
         <ul>
             <li style="color: rgb({{ r }}, 0, 0);">
                 
-                <span style="border: 1px solid {{border_color}};"<b>{{ node.scenario }}</b></span>
+                <span style="font-size: {{size}}px; border: 1px solid {{border_color}};"<b>{{ node.scenario }}</b></span>
                 {% if node.best %}
                 {{ render_node(node.best, "green") }}
                 {% endif %}
@@ -24,8 +25,8 @@
     {% endmacro %}
 
 {% block body %}
-    
-    <h1>Tree: {{root.scenario}}</h1>
+    <br>
+    <h1>If you {{root.scenario}},</h1>
     <div style="display: flex; gap: 40em">
     <div>
     <button id="pngButton" onclick="downloadPNG('{{root.scenario}}_Tree.png')">Download PNG</button>
@@ -33,18 +34,20 @@
     <div style="text-align: center;">
     <h2>Key</h2>
     <span style="color: red;">More Realistic</span> => <span style="color: black">Less Realistic</span> <br> 
-    <span style="border: 2px solid green;">Best-Case</span>, <span style="border: 2px solid red;">Realistic-Case</span>, 
-    <span style="border: 2px solid blue;">Worst-Case</span> 
+    <span style="border: 1px solid green;">Best-Case</span>, <span style="border: 1px solid red;">Realistic-Case</span>, 
+    <span style="border: 1px solid blue;">Worst-Case</span> 
     </div>
     </div> 
-    
+    <br>
+    <div class="box">
     {{ render_node(root, "red") }}
     <br>
-    <div style="text-align: center; display: flex; gap: 9em">
+    <div style="text-align: center; display: flex; gap: 8.4em">
     <div style="padding-left: 170px">Decision</div> 
-    <div>Instant Result</div>
-    <div>Months Result</div>
-    <div>Years Result</div>
+    <div>Immediate Outcome</div>
+    <div>Weeks Result</div>
+    <div>Months/Years Result</div>
+    </div>
     </div>
    
         
