@@ -5,6 +5,8 @@ is shown a tree of their outcomes and can download a png of it.
   
 Link to the project: https://decisiontreeapp.onrender.com/
 
+![Alt text](./create%20an%20awesome%20decision%20tree%20app_Tree.png)
+
 # Tech Stack
 Front end: HTML/CSS/JavaScript  
 Back end: Python (Flask), Jinja2  
